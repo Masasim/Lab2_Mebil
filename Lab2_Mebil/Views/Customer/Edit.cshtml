@@ -1,29 +1,38 @@
 ﻿@model Lab2_Mebil.Models.Customer
 
-
 @{
     ViewData["Title"] = "Edit Customer";
 }
 
 <h2>Edit Customer</h2>
 
-<form asp-action="Edit" asp-controller="Customer" method="post">
-
-    <input type="hidden" name="id" value="@Model.id" />
+<form asp-action="Edit" method="post">
+    <input asp-for="id" type="hidden" />
 
     <div class="form-group">
-        <label for="name">Name</label>
-        <input type="text" id="name" name="name" class="form-control" value="@Model.name" />
+        <label asp-for="name" class="control-label"></label>
+        <input asp-for="name" class="form-control" />
+        <span asp-validation-for="name" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label for="address">Address</label>
-        <input type="text" id="address" name="address" class="form-control" value="@Model.address" />
+        <label asp-for="address" class="control-label"></label>
+        <input asp-for="address" class="form-control" />
+        <span asp-validation-for="address" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label for="bankDetails">Bank Details</label>
-        <input type="text" id="bankDetails" name="bankDetails" class="form-control" value="@Model.bankDetails" />
+        <label asp-for="bankDetails" class="control-label"></label>
+        <input asp-for="bankDetails" class="form-control" />
+        <span asp-validation-for="bankDetails" class="text-danger"></span>
     </div>
+
     <button type="submit" class="btn btn-primary">Save</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
 </form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
